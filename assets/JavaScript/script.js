@@ -90,8 +90,25 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
-}
+  let userResponse = prompt('Please define number of characters in your password - it must be between 8 and 128');
+  userResponse = parseInt(userResponse);
+  console.log(userResponse)
+  if(!userResponse) {
+    console.log('It was not a number')
+    alert('It was not a number')
+  }
+    else if(userResponse >= 8 && userResponse <= 128) {
+      console.log('Success! Thank you!')
+      alert('Success! Thank you!')
+  }
+  else {
+    console.log('Number not withing range, please choose number between 8 and 128')
+    alert('Number not withing range, please choose number between 8 and 128')
+  }
+  return 
+  }
+  // prompt ('click OK if you want to use special Charakters')
+getPasswordOptions()
 
 // Function for getting a random element from an array
 function getRandom(arr) {
