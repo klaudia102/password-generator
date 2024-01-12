@@ -105,16 +105,40 @@ function getPasswordOptions() {
     console.log('Number not withing range, please choose number between 8 and 128')
     alert('Number not withing range, please choose number between 8 and 128')
   }
-  return 
+
+  const getSpecialCharacters = confirm ('Click OK if you want to use special charakters')
+  const getNumericCharacters = confirm ('Click OK if you want to use numbers')
+  const getLowercaseCharacters = confirm ('Click OK if you want to use lowercase characters')
+  const getUppercaseCharacters = confirm ('Click OK if you want to use uppercase characters')
+  console.log(getLowercaseCharacters);
+  console.log(getNumericCharacters);
+  console.log(getUppercaseCharacters);
+  console.log(getSpecialCharacters);
+
+  if (getSpecialCharacters === false && getNumericCharacters === false &&
+     getLowercaseCharacters === false && getUppercaseCharacters=== false) {
+      alert('Must choose at least one kind of type of characters');
+  } else {
+    alert('Success! Thank you!')
   }
-  // prompt ('click OK if you want to use special Charakters')
+}
 getPasswordOptions()
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+    return arr [Math.floor(Math.random() * arr.lengh)]
 }
 
+let randomSpecialCharacters = getRandom(specialCharacters);
+let randomNumericCharacters = getRandom(numericCharacters);
+let randomLowercaseCharacters = getRandom(lowerCasedCharacters);
+let randomUppercaseCharacters = getRandom(upperCasedCharacters);
+console.log(randomSpecialCharacters);
+console.log(randomNumericCharacters);
+console.log(randomLowercaseCharacters);
+console.log(randomUppercaseCharacters);
+
+                                              
 // Function to generate password with user input
 function generatePassword() {
 
