@@ -109,7 +109,7 @@ function getPasswordOptions() {
     return {
       lengh: userResponse,
       numeric: getNumericCharacters,
-      specila: getSpecialCharacters,
+      special: getSpecialCharacters,
       upper: getUppercaseCharacters,
       lower: getLowercaseCharacters,
     };
@@ -146,7 +146,7 @@ function generatePassword() {
     newPassword += getRandom(numericCharacters)
     characters = [...characters, ...numericCharacters]
   }
-  if (obj.specila) {
+  if (obj.special) {
     newPassword += getRandom(specialCharacters)
     characters = [...characters, ...specialCharacters]
   }
@@ -163,7 +163,7 @@ function generatePassword() {
     newPassword += getRandom(characters)
  
   }
-
+return newPassword;
 }  
 
 // Get references to the #generate element
