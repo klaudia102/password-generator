@@ -90,35 +90,81 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  let userResponse = prompt('Please define number of characters in your password - it must be between 8 and 128');
+  var userResponse = prompt('Please define number of characters in your password - it must be between 8 and 128');
   userResponse = parseInt(userResponse);
   console.log(userResponse)
-  if(!userResponse) {
+  if (!userResponse) {
     console.log('It was not a number')
     alert('It was not a number')
+    getPasswordOptions()
   }
-    else if(userResponse >= 8 && userResponse <= 128) {
-      console.log('Success! Thank you!')
-      alert('Success! Thank you!')
+  else if (userResponse >= 8 && userResponse <= 128) {
+    console.log('Success! Thank you!')
+
+    var getSpecialCharacters = confirm('Click OK if you want to use special charakters')
+    var getNumericCharacters = confirm('Click OK if you want to use numbers')
+    var getLowercaseCharacters = confirm('Click OK if you want to use lowercase characters')
+    var getUppercaseCharacters = confirm('Click OK if you want to use uppercase characters')
+
+    return {
+      lengh: userResponse,
+      numeric: getNumericCharacters,
+      specila: getSpecialCharacters,
+      upper: getUppercaseCharacters,
+      lower: getLowercaseCharacters,
+    };
+    
   }
   else {
     console.log('Number not withing range, please choose number between 8 and 128')
     alert('Number not withing range, please choose number between 8 and 128')
   }
-  return 
+
+  if (getSpecialCharacters === false && getNumericCharacters === false &&
+    getLowercaseCharacters === false && getUppercaseCharacters === false) {
+    alert('Must choose at least one kind of type of characters');
+    getPasswordOptions()
+  } else {
+    alert('Success! Thank you!')
   }
-  // prompt ('click OK if you want to use special Charakters')
-getPasswordOptions()
+}
+
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  // return arr
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
-// Function to generate password with user input
+// // Function to generate password with user input
 function generatePassword() {
+  var obj = getPasswordOptions()
+  alert('Success! Thank you!')
+  let newPassword = '';
+  let characters = [];
+  if (obj.numeric) {
+    newPassword += getRandom(numericCharacters)
+    characters = [...characters, ...numericCharacters]
+  }
+  if (obj.specila) {
+    newPassword += getRandom(specialCharacters)
+    characters = [...characters, ...specialCharacters]
+  }
+  if (obj.upper) {
+    newPassword += getRandom(upperCasedCharacters)
+    characters = [...characters, ...upperCasedCharacters]
+  }
+  if (obj.lower) {
+    newPassword += getRandom(lowerCasedCharacters)
+    characters = [...characters, ...lowerCasedCharacters]
+  }
 
-}
+  for (let i = newPassword.length; i < obj.lengh; i++) {
+    newPassword += getRandom(characters)
+ 
+  }
+
+}  
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
