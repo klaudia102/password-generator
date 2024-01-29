@@ -92,14 +92,11 @@ var upperCasedCharacters = [
 function getPasswordOptions() {
   var userResponse = prompt('Please define number of characters in your password - it must be between 8 and 128');
   userResponse = parseInt(userResponse);
-  console.log(userResponse)
   if (!userResponse) {
-    console.log('It was not a number')
     alert('It was not a number')
     getPasswordOptions()
   }
   else if (userResponse >= 8 && userResponse <= 128) {
-    console.log('Success! Thank you!')
 
     var getSpecialCharacters = confirm('Click OK if you want to use special charakters')
     var getNumericCharacters = confirm('Click OK if you want to use numbers')
@@ -109,14 +106,13 @@ function getPasswordOptions() {
     return {
       lengh: userResponse,
       numeric: getNumericCharacters,
-      specila: getSpecialCharacters,
+      special: getSpecialCharacters,
       upper: getUppercaseCharacters,
       lower: getLowercaseCharacters,
     };
-    
+
   }
   else {
-    console.log('Number not withing range, please choose number between 8 and 128')
     alert('Number not withing range, please choose number between 8 and 128')
   }
 
@@ -146,7 +142,7 @@ function generatePassword() {
     newPassword += getRandom(numericCharacters)
     characters = [...characters, ...numericCharacters]
   }
-  if (obj.specila) {
+  if (obj.special) {
     newPassword += getRandom(specialCharacters)
     characters = [...characters, ...specialCharacters]
   }
@@ -161,10 +157,10 @@ function generatePassword() {
 
   for (let i = newPassword.length; i < obj.lengh; i++) {
     newPassword += getRandom(characters)
- 
-  }
 
-}  
+  }
+  return newPassword;
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
